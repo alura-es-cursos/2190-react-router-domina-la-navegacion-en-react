@@ -23,28 +23,28 @@ const BarraLateral = () => {
                     <ItemNavegacion
                         iconoActivo="/iconos/mas-vistas-activo.png"
                         iconoInactivo="/iconos/mas-vistas-inactivo.png"
-                        link="/mas-vistas"
+                        link="/galeria/mas-vistas"
                     >
                         Más vistas
                     </ItemNavegacion>
                     <ItemNavegacion
                         iconoActivo="/iconos/me-gusta-activo.png"
                         iconoInactivo="/iconos/me-gusta-inactivo.png"
-                        link="/me-gusta"
+                        link="/galeria/favoritas"
                     >
-                        Más Me Gusta
+                        Favoritas
                     </ItemNavegacion>
                     <ItemNavegacion
                         iconoActivo="/iconos/nuevas-activo.png"
                         iconoInactivo="/iconos/nuevas-inactivo.png"
-                        link="/nuevas"
+                        link="/galeria/nuevas"
                     >
                         Nuevas
                     </ItemNavegacion>
                     <ItemNavegacion
                         iconoActivo="/iconos/sorprendeme-activo.png"
                         iconoInactivo="/iconos/sorprendeme-inactivo.png"
-                        link="/sorprendeme"
+                        link="/galeria/sorprendeme"
                     >
                         Sorpréndeme
                     </ItemNavegacion>

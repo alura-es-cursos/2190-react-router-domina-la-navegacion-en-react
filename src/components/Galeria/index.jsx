@@ -5,7 +5,9 @@ import Tag from "./Tags"
 import Imagen from "./Imagen"
 import { useContext } from "react"
 import { GlobalContext } from "../../context/GlobalContext"
-import Cargando from "../Cargando"
+import Cargando from "../Cargando";
+import isSearchVisble from "../../utils/IsSearchVisible"
+
 
 const GaleriaContainer = styled.div`
 display: flex;
@@ -37,8 +39,7 @@ const Galeria = () => {
                         <Titulo>Navegue por la galería</Titulo>
                         <ImagenesContainer>
                             {state.fotosDeGaleria.filter(foto => {
-                                return state.consulta == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
-                                    .includes(state.consulta.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, ""))
+                                return isSearchVisble(state.consulta, foto);
                             })
                                 .map(foto => <Imagen
                                     key={foto.id}

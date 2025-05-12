@@ -6,7 +6,7 @@ const FigureEstilizada = styled.figure`
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
-    min-height: 328px;
+    min-height: ${props => `${props.$height}`};
     margin: 0;
     border-radius: 20px;
     max-width: 100%;
@@ -22,11 +22,11 @@ const TituloEstilizado = styled.h1`
     padding: 0 64px;
 `
 
-const Banner = ({texto, backgroundImage}) => {
+const Banner = ({ texto, backgroundImage, height = "200px" }) => {
     return (
-    <FigureEstilizada $backgroundImage={backgroundImage}>
-        <TituloEstilizado>{texto}</TituloEstilizado>
-    </FigureEstilizada>)
+        <FigureEstilizada $backgroundImage={backgroundImage} $height={height}>
+            <TituloEstilizado>{texto}</TituloEstilizado>
+        </FigureEstilizada>)
 }
 
 export default Banner
