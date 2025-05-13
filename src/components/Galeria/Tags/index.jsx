@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import tags from './tags.json'
+import { useNavigate } from 'react-router';
 
 const TagsContainer = styled.section`
     display: flex;
@@ -36,10 +37,15 @@ const Div = styled.div`
 `
 
 const Tags = () => {
+    const navigate = useNavigate();
+    const consultaPorTag = (tituloTag) => {
+        navigate(`/?tag=${tituloTag}`);
+    }
+
     return <TagsContainer>
         <TagTitulo>Busque por tags:</TagTitulo>
         <Div>
-            {tags.map(tag => <Tag key={tag.id}>{tag.titulo}</Tag>)}
+            {tags.map(tag => <Tag key={tag.id} onClick={() => consultaPorTag(tag.titulo)}>{tag.titulo}</Tag>)}
         </Div>
     </TagsContainer>
 }

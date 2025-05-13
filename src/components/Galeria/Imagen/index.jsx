@@ -3,6 +3,7 @@ import BotonIcono from "../../BotonIcono"
 import { useContext } from "react"
 import { GlobalContext } from "../../../context/GlobalContext"
 import useFotoModal from "../../../hooks/useFotoModal"
+import { useNavigate } from "react-router"
 const Figure = styled.figure`
     width: ${props => props.$expandida ? '90%' : '370px'};
     max-width: 100%;
@@ -39,14 +40,18 @@ const Pie = styled.footer`
 `
 
 const Imagen = ({ foto, expandida = false }) => {
-
+    const navigate = useNavigate();
     const { abrirModal } = useFotoModal();
     const { dispatch } = useContext(GlobalContext);
     const iconoFavorito = foto.favorita ? "/iconos/favorito-activo.png" : "/iconos/favorito.png";
 
+    const handleClickImagen = () => {
+        navigate(`/foto/${foto.id}`);
+    }
+
     return (
         <Figure $expandida={expandida} id={`foto-${foto.id}`}>
-            <img src={foto.path} alt={foto.alt} />
+            <img src={foto.path} alt={foto.alt} onClick={handleClickImagen} />
             <figcaption>
                 <h3>{foto.titulo}</h3>
                 <Pie>
@@ -59,7 +64,8 @@ const Imagen = ({ foto, expandida = false }) => {
                     </BotonIcono>}
                 </Pie>
             </figcaption>
-        </Figure>)
+        </Figure >
+    )
 }
 
 export default Imagen

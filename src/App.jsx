@@ -12,6 +12,7 @@ import Favoritas from "./views/Favoritas"
 import Nuevas from "./views/Nuevas"
 import Sorprendeme from "./views/Sorprendeme"
 import GaleriaLayout from "./components/GaleriaLayout"
+import DetalleImagen from "./views/DetalleImagen"
 
 const FondoGradiente = styled.div`
 background: linear-gradient(175deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -48,6 +49,7 @@ const App = () => {
                   <Route path="nuevas" element={<Nuevas></Nuevas>}></Route>
                   <Route path="sorprendeme" element={<Sorprendeme></Sorprendeme>}></Route>
                 </Route>
+                <Route path="/foto/:id" element={<DetalleImagen></DetalleImagen>}></Route>
               </Routes>
             </MainContainer>
           </AppContainer>
