@@ -8,12 +8,15 @@ const initialState = {
     fotosDeGaleria: [],
     fotoSeleccionada: null,
     modalAbierto: false,
+    usuarioAutenticado: false,
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
         case 'SET_CONSULTA':
             return { ...state, consulta: action.payload };
+        case 'SET_AUTENTICACION':
+            return { ...state, usuarioAutenticado: action.payload };
         case 'SET_FOTOS_DE_GALERIA':
             return { ...state, fotosDeGaleria: action.payload };
         case 'SET_FOTO_SELECCIONADA':

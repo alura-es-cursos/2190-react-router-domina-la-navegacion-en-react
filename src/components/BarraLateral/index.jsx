@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import ItemNavegacion from "./ItemNavegacion"
+import { useContext } from "react"
+import { GlobalContext } from "../../context/GlobalContext"
 const ListaEstilizada = styled.ul`
    margin: 0;
    padding: 0;
@@ -8,6 +10,7 @@ const ListaEstilizada = styled.ul`
 `
 
 const BarraLateral = () => {
+    const { state } = useContext(GlobalContext);
     return (
         <aside>
             <nav>
@@ -20,34 +23,54 @@ const BarraLateral = () => {
                     >
                         Inicio
                     </ItemNavegacion>
-                    <ItemNavegacion
-                        iconoActivo="/iconos/mas-vistas-activo.png"
-                        iconoInactivo="/iconos/mas-vistas-inactivo.png"
-                        link="/galeria/mas-vistas"
+                    {!state.usuarioAutenticado ? <ItemNavegacion
+                        iconoActivo="/iconos/login-activo.png"
+                        iconoInactivo="/iconos/login-inactivo.png"
+                        link="/login"
+                        activo={true}
                     >
-                        Más vistas
+                        Ingresar
                     </ItemNavegacion>
-                    <ItemNavegacion
-                        iconoActivo="/iconos/me-gusta-activo.png"
-                        iconoInactivo="/iconos/me-gusta-inactivo.png"
-                        link="/galeria/favoritas"
-                    >
-                        Favoritas
-                    </ItemNavegacion>
-                    <ItemNavegacion
-                        iconoActivo="/iconos/nuevas-activo.png"
-                        iconoInactivo="/iconos/nuevas-inactivo.png"
-                        link="/galeria/nuevas"
-                    >
-                        Nuevas
-                    </ItemNavegacion>
-                    <ItemNavegacion
-                        iconoActivo="/iconos/sorprendeme-activo.png"
-                        iconoInactivo="/iconos/sorprendeme-inactivo.png"
-                        link="/galeria/sorprendeme"
-                    >
-                        Sorpréndeme
-                    </ItemNavegacion>
+                        :
+                        <>
+                            <ItemNavegacion
+                                iconoActivo="/iconos/mas-vistas-activo.png"
+                                iconoInactivo="/iconos/mas-vistas-inactivo.png"
+                                link="/galeria/mas-vistas"
+                            >
+                                Más vistas
+                            </ItemNavegacion>
+                            <ItemNavegacion
+                                iconoActivo="/iconos/me-gusta-activo.png"
+                                iconoInactivo="/iconos/me-gusta-inactivo.png"
+                                link="/galeria/favoritas"
+                            >
+                                Favoritas
+                            </ItemNavegacion>
+                            <ItemNavegacion
+                                iconoActivo="/iconos/nuevas-activo.png"
+                                iconoInactivo="/iconos/nuevas-inactivo.png"
+                                link="/galeria/nuevas"
+                            >
+                                Nuevas
+                            </ItemNavegacion>
+                            <ItemNavegacion
+                                iconoActivo="/iconos/sorprendeme-activo.png"
+                                iconoInactivo="/iconos/sorprendeme-inactivo.png"
+                                link="/galeria/sorprendeme"
+                            >
+                                Sorpréndeme
+                            </ItemNavegacion>
+                            <ItemNavegacion
+                                iconoActivo="/iconos/logout-activo.png"
+                                iconoInactivo="/iconos/logout-inactivo.png"
+                                link="/login"
+                                activo={true}
+                            >
+                                Salir
+                            </ItemNavegacion>
+                        </>
+                    }
                 </ListaEstilizada>
             </nav>
         </aside>

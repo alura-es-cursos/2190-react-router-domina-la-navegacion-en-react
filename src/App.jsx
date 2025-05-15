@@ -4,7 +4,7 @@ import Cabecera from "./components/Cabecera"
 import BarraLateral from "./components/BarraLateral"
 import ModalZoom from "./components/ModalZoom"
 import Pie from "./components/Pie"
-import GlobalContextProvider from "./context/GlobalContext"
+import GlobalContextProvider, { GlobalContext } from "./context/GlobalContext"
 import { Route, Routes } from "react-router"
 import Home from "./views/Home"
 import MasVistas from "./views/MasVistas"
@@ -13,6 +13,9 @@ import Nuevas from "./views/Nuevas"
 import Sorprendeme from "./views/Sorprendeme"
 import GaleriaLayout from "./components/GaleriaLayout"
 import DetalleImagen from "./views/DetalleImagen"
+import Login from "./views/Login"
+import { useContext } from "react"
+import ProtectorRutas from "./components/ProtectorRutas"
 
 const FondoGradiente = styled.div`
 background: linear-gradient(175deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -31,18 +34,20 @@ const MainContainer = styled.main`
 
 
 const App = () => {
-
+  const { state } = useContext(GlobalContext);
   return (
     <>
       <FondoGradiente>
         <GlobalStyles />
-        <GlobalContextProvider>
-          <AppContainer>
-            <Cabecera />
-            <MainContainer>
-              <BarraLateral />
-              <Routes>
-                <Route path="/" element={<Home></Home>}></Route>
+
+        <AppContainer>
+          <Cabecera />
+          <MainContainer>
+            <BarraLateral />
+            <Routes>
+              <Route path="/" element={<Home></Home>}></Route>
+              <Route path="/login" element={<Login></Login>}></Route>
+              <Route element={<ProtectorRutas></ProtectorRutas>}>
                 <Route path="/galeria" element={<GaleriaLayout></GaleriaLayout>}>
                   <Route path="mas-vistas" element={<MasVistas></MasVistas>}></Route>
                   <Route path="favoritas" element={<Favoritas></Favoritas>}></Route>
@@ -50,12 +55,12 @@ const App = () => {
                   <Route path="sorprendeme" element={<Sorprendeme></Sorprendeme>}></Route>
                 </Route>
                 <Route path="/foto/:id" element={<DetalleImagen></DetalleImagen>}></Route>
-              </Routes>
-            </MainContainer>
-          </AppContainer>
-          <ModalZoom />
-          <Pie />
-        </GlobalContextProvider>
+              </Route>
+            </Routes>
+          </MainContainer>
+        </AppContainer>
+        <ModalZoom />
+        <Pie />
 
       </FondoGradiente>
     </>

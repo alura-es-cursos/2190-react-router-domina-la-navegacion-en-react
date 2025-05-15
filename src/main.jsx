@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
+import GlobalContextProvider from './context/GlobalContext.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <GlobalContextProvider>
+      <App />
+    </GlobalContextProvider>
   </BrowserRouter>
 )
