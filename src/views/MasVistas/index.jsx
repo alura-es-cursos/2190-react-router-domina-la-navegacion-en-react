@@ -7,6 +7,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 import Imagen from '../../components/Galeria/Imagen';
 import isSearchVisible from '../../utils/IsSearchVisible';
 import Cargando from '../../components/Cargando';
+import PaginaAnimacion from '../../components/PaginaAnimacion';
 
 
 const MasVistas = () => {
@@ -16,18 +17,20 @@ const MasVistas = () => {
     }
 
     return (
-        <ContenidoGaleria>
-            <Banner texto="Imágenes más vistas" backgroundImage={banner} />
-            <ImagenesContainer>
-                {state.fotosDeGaleria.filter(foto => {
-                    return isFotoVisible(state.consulta, foto);
-                })
-                    .map(foto => <Imagen
-                        key={foto.id}
-                        foto={foto} />)
-                }
-            </ImagenesContainer>
-        </ContenidoGaleria>
+        <PaginaAnimacion>
+            <ContenidoGaleria>
+                <Banner texto="Imágenes más vistas" backgroundImage={banner} />
+                <ImagenesContainer>
+                    {state.fotosDeGaleria.filter(foto => {
+                        return isFotoVisible(state.consulta, foto);
+                    })
+                        .map(foto => <Imagen
+                            key={foto.id}
+                            foto={foto} />)
+                    }
+                </ImagenesContainer>
+            </ContenidoGaleria>
+        </PaginaAnimacion>
     )
 }
 

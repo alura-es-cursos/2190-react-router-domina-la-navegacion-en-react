@@ -8,7 +8,7 @@ const initialState = {
     fotosDeGaleria: [],
     fotoSeleccionada: null,
     modalAbierto: false,
-    usuarioAutenticado: false,
+    usuarioAutenticado: true,
 }
 
 const reducer = (state, action) => {

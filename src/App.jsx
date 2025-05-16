@@ -4,8 +4,7 @@ import Cabecera from "./components/Cabecera"
 import BarraLateral from "./components/BarraLateral"
 import ModalZoom from "./components/ModalZoom"
 import Pie from "./components/Pie"
-import GlobalContextProvider, { GlobalContext } from "./context/GlobalContext"
-import { Route, Routes } from "react-router"
+import { Route, Routes, useLocation } from "react-router"
 import Home from "./views/Home"
 import MasVistas from "./views/MasVistas"
 import Favoritas from "./views/Favoritas"
@@ -14,8 +13,9 @@ import Sorprendeme from "./views/Sorprendeme"
 import GaleriaLayout from "./components/GaleriaLayout"
 import DetalleImagen from "./views/DetalleImagen"
 import Login from "./views/Login"
-import { useContext } from "react"
 import ProtectorRutas from "./components/ProtectorRutas"
+import { AnimatePresence } from "framer-motion"
+import Error404 from "./views/404"
 
 const FondoGradiente = styled.div`
 background: linear-gradient(175deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -34,7 +34,8 @@ const MainContainer = styled.main`
 
 
 const App = () => {
-  const { state } = useContext(GlobalContext);
+  const location = useLocation();
+
   return (
     <>
       <FondoGradiente>
@@ -44,7 +45,8 @@ const App = () => {
           <Cabecera />
           <MainContainer>
             <BarraLateral />
-            <Routes>
+
+            <Routes location={location} key={location.pathname}>
               <Route path="/" element={<Home></Home>}></Route>
               <Route path="/login" element={<Login></Login>}></Route>
               <Route element={<ProtectorRutas></ProtectorRutas>}>
@@ -56,7 +58,9 @@ const App = () => {
                 </Route>
                 <Route path="/foto/:id" element={<DetalleImagen></DetalleImagen>}></Route>
               </Route>
+              <Route path="*" element={<Error404></Error404>}></Route>
             </Routes>
+
           </MainContainer>
         </AppContainer>
         <ModalZoom />

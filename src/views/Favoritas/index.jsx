@@ -6,6 +6,7 @@ import ImagenesContainer from '../../components/ImagenesContainer';
 import { GlobalContext } from '../../context/GlobalContext';
 import Imagen from '../../components/Galeria/Imagen';
 import isSearchVisible from '../../utils/IsSearchVisible';
+import PaginaAnimacion from '../../components/PaginaAnimacion';
 
 
 const Favoritas = () => {
@@ -15,19 +16,21 @@ const Favoritas = () => {
     }
 
     return (
-        <ContenidoGaleria>
-            <Banner texto="Tus favoritas!" backgroundImage={banner} />
-            <ImagenesContainer>
-                {state.fotosDeGaleria.filter(foto => {
-                    return isFotoVisible(state.consulta, foto);
-                })
-                    .map(foto => <Imagen
-                        key={foto.id}
-                        foto={foto} />)
-                }
-            </ImagenesContainer>
-        </ContenidoGaleria>
+        <PaginaAnimacion>
+            <ContenidoGaleria>
+                <Banner texto="Tus favoritas!" backgroundImage={banner} />
+                <ImagenesContainer>
+                    {state.fotosDeGaleria.filter(foto => {
+                        return isFotoVisible(state.consulta, foto);
+                    })
+                        .map(foto => <Imagen
+                            key={foto.id}
+                            foto={foto} />)
+                    }
+                </ImagenesContainer>
+            </ContenidoGaleria>
+        </PaginaAnimacion>
     )
 }
 
-export default Favoritas
+export default Favoritas;
